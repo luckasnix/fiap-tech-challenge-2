@@ -33,3 +33,15 @@ Siga as etapas abaixo para configurar e executar o projeto em seu ambiente local
     ```
 
 6. Abra no seu navegador em [http://localhost:3000](http://localhost:3000)
+
+## Executando a documentação do Design System
+
+1. Abra o terminal da sua máquina
+
+2. Execute o Storybook:
+
+    ```bash
+    npm run storybook
+    ```
+
+3. Abra no seu navegador em [http://localhost:6006](http://localhost:6006)
