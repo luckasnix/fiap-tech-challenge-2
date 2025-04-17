@@ -1,0 +1,10 @@
+.page {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.title {
+  padding: 40px;
+  font-family: var(--font-inter);
+}
