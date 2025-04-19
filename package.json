@@ -7,6 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "format:check": "prettier . --check",
+    "format:write": "prettier . --write",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
@@ -28,7 +30,9 @@
     "@types/react-dom": "19.1.2",
     "eslint": "9.24.0",
     "eslint-config-next": "15.3.0",
+    "eslint-config-prettier": "10.1.2",
     "eslint-plugin-storybook": "0.12.0",
+    "prettier": "3.5.3",
     "storybook": "8.6.12",
     "typescript": "5.8.3"
   }

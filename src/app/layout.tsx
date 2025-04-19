@@ -12,7 +12,8 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "FIAP - 1º Tech Challenge",
-  description: "Aplicação do 1º Tech Challenge da pós-graduação de Front-end Engineering da FIAP",
+  description:
+    "Aplicação do 1º Tech Challenge da pós-graduação de Front-end Engineering da FIAP",
 };
 
 export default function RootLayout({
@@ -22,9 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body className={inter.variable}>
-        {children}
-      </body>
+      <body className={inter.variable}>{children}</body>
     </html>
   );
 }
