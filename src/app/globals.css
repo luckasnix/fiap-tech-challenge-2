@@ -7,3 +7,26 @@
 * {
   margin: 0;
 }
+
+:root {
+  --color-primary: #004D61;
+  --color-secondary: #FF5031;
+  --color-tertiary: #DEE9EA;
+  --color-quaternary: #F8F8F8;
+  --color-quinary: #E4EDE3;
+  --color-success: #47A138;
+  --color-white: #FFFFFF;
+  --color-black: #000000;
+
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-5: 20px;
+  --spacing-6: 24px;
+  --spacing-7: 28px;
+  --spacing-8: 32px;
+  --spacing-9: 36px;
+  --spacing-10: 40px;
+  --spacing-15: 60px;
+}
