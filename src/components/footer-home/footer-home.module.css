@@ -1,0 +1,47 @@
+.footer {
+  padding: var(--spacing-11);
+  background-color: var(--color-black);
+  display: flex;
+  justify-content: center;
+}
+
+.innerWrapper {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.credits {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-5);
+}
+
+.credits h3 {
+  font-family: var(--font-inter);
+  font-size: 16px;
+  color: var(--color-white);
+}
+
+.credits svg {
+  width: 145px;
+  fill: var(--color-white);
+}
+
+.socials {
+  padding-left: 0;
+  list-style: none;
+  display: flex;
+  gap: var(--spacing-6);
+}
+
+.socials a {
+  text-decoration: none;
+}
+
+.socials svg {
+  width: 30px;
+  fill: var(--color-white);
+}
