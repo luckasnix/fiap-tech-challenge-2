@@ -1,0 +1,17 @@
+.menu {
+  display: flex;
+  gap: 2rem;
+}
+
+.menu .navItems {
+  cursor: pointer;
+  font-family: var(--font-inter);
+  font-size: var(--spacing-4);
+  color: var(--color-success);
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.menu .navItems:hover {
+  color: var(--color-white);
+}

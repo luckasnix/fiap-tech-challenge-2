@@ -7,7 +7,7 @@ import styles from "./footer-home.module.css";
 
 export const FooterHome = () => (
   <footer className={styles.footer}>
-    <div className={styles.innerWrapper}>
+    <div className={`${styles.innerWrapper} container`}>
       <FooterColumn
         title="Serviços"
         items={[

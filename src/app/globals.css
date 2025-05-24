@@ -6,6 +6,23 @@
 
 * {
   margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  min-width: 320px;
+  margin: 0 auto;
+}
+
+.container-fluid {
+  width: 100%;
 }
 
 :root {
@@ -17,7 +34,7 @@
   --color-success: #47a138;
   --color-white: #ffffff;
   --color-black: #000000;
-  --color-gray: #8B8B8B;
+  --color-gray: #8b8b8b;
 
   --spacing-1: 4px;
   --spacing-2: 8px;
@@ -30,5 +47,9 @@
   --spacing-9: 36px;
   --spacing-10: 40px;
   --spacing-11: 48px;
+  --spacing-12: 52px;
+  --spacing-13: 56px;
+  --spacing-14: 58px;
   --spacing-15: 60px;
+  --spacing-16: 64px;
 }

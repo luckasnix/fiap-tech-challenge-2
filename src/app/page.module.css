@@ -1,10 +1,5 @@
-.page {
-  width: 100%;
+.layout {
   display: flex;
-  justify-content: center;
-}
-
-.title {
-  padding: 40px;
-  font-family: var(--font-inter);
+  flex-direction: column;
+  min-height: 100vh;
 }

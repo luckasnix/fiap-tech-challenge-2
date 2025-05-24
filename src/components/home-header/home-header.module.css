@@ -1,0 +1,27 @@
+.header {
+  background-color: var(--color-black);
+  padding: var(--spacing-4) 0;
+}
+
+.header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.header .navbar {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-16);
+}
+
+.header .navbar svg {
+  width: 145px;
+  fill: var(--color-success);
+}
+
+.header .buttons {
+  display: flex;
+  gap: var(--spacing-4);
+}

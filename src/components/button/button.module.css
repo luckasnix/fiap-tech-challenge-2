@@ -1,16 +1,51 @@
 .button {
   display: block;
   cursor: pointer;
+  font-family: var(--font-inter);
+  font-size: var(--spacing-4);
+  font-weight: 600;
+  text-align: center;
+  border-radius: var(--spacing-2);
+  transition: all 0.3s ease;
+  min-width: 180px;
+  height: var(--spacing-12);
+  padding: 0 var(--spacing-4);
 }
 
-.button:hover {
-  opacity: .8;
-  transition: .3s;
+/* Botão principal: fundo verde, texto preto */
+.button.homePrimary {
+  background-color: var(--color-success);
+  color: var(--color-black);
+  border: 2px solid var(--color-success);
 }
 
+.button.homePrimary:hover {
+  background-color: var(--color-black);
+  color: var(--color-white);
+  border: 2px solid var(--color-success);
+}
+
+/* Botão secundário: fundo preto, texto e borda verdes */
+.button.homeSecondary {
+  background-color: var(--color-black);
+  color: var(--color-success);
+  border: 2px solid var(--color-success);
+}
+
+.button.homeSecondary:hover {
+  background-color: var(--color-success);
+  color: var(--color-white);
+}
+
+/* Botão ghost: sem fundo, sem borda */
 .button.ghost {
-  padding: 0;
-  outline: none;
   background: none;
   border: none;
+  color: var(--color-success);
+  padding: 0;
+  outline: none;
+}
+
+.button.ghost:hover {
+  opacity: 0.8;
 }

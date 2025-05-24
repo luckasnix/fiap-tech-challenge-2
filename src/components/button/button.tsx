@@ -1,10 +1,10 @@
-import styles from "./button.module.css";
 import { ReactNode } from "react";
+import styles from "./button.module.css";
 
 export type ButtonProps = Readonly<{
   children: ReactNode;
   onClick?: () => void;
-  variant: "ghost";
+  variant: "ghost" | "homePrimary" | "homeSecondary";
 }>;
 
 export const Button = ({ children, onClick, variant }: ButtonProps) => (

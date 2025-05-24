@@ -1,13 +1,11 @@
 .footer {
-  padding: var(--spacing-11);
   background-color: var(--color-black);
   display: flex;
   justify-content: center;
+  padding: 2rem 0;
 }
 
 .innerWrapper {
-  width: 100%;
-  max-width: 1200px;
   display: flex;
   justify-content: space-between;
 }
