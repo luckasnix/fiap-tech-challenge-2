@@ -19,5 +19,6 @@ export const Basic: Story = {
   args: {
     userName: "Joana",
     date: Date.now(),
+    checkingAccountValue: 1000,
   },
 };

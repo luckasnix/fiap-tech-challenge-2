@@ -75,7 +75,7 @@
 }
 
 .ul li:not(:last-of-type)::after {
-  content: '';
+  content: "";
   margin: 16px auto;
   width: 112px;
   height: 1px;

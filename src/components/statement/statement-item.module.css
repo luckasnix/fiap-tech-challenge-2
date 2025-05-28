@@ -1,7 +1,7 @@
 .statementItem {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-2)
+  gap: var(--spacing-2);
 }
 
 .month {
@@ -35,7 +35,7 @@
 }
 
 .value::after {
-  content: '';
+  content: "";
   height: 1px;
   display: block;
   background-color: var(--color-success);
