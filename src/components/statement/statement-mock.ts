@@ -1,6 +1,6 @@
-import { StatementItemProps } from "./statement-item";
+import { TransactionProps } from "./transaction-item";
 
-export const statementList: StatementItemProps[] = [
+export const statement: TransactionProps[] = [
   {
     id: 1,
     month: "Novembro",

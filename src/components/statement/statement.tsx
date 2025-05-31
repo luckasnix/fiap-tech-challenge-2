@@ -1,8 +1,8 @@
 import { Button } from "../button/button";
 import { VectorImage } from "../vector-image/vector-image";
-import { StatementItem } from "./statement-item";
+import { TransactionItem } from "./transaction-item";
 import styles from "./statement.module.css";
-import { statementList } from "./statement-mock";
+import { statement } from "./statement-mock";
 
 export const Statement = () => {
   return (
@@ -20,8 +20,11 @@ export const Statement = () => {
           </div>
         </header>
         <div className={styles.statementListWrapper}>
-          {statementList.map((statement) => (
-            <StatementItem key={statement.id} {...statement}></StatementItem>
+          {statement.map((transaction) => (
+            <TransactionItem
+              key={transaction.id}
+              {...transaction}
+            ></TransactionItem>
           ))}
         </div>
       </div>

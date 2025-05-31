@@ -1,8 +1,8 @@
 import { formatCurrencyBRL } from "~/utils/currency";
 
-import styles from "./statement-item.module.css";
+import styles from "./transaction-item.module.css";
 
-export type StatementItemProps = Readonly<{
+export type TransactionProps = Readonly<{
   id?: number;
   month: string;
   typeTransaction: string;
@@ -10,13 +10,13 @@ export type StatementItemProps = Readonly<{
   value: number;
 }>;
 
-export const StatementItem = ({
+export const TransactionItem = ({
   month,
   typeTransaction,
   date,
   value,
-}: StatementItemProps) => (
-  <div className={styles.statementItem}>
+}: TransactionProps) => (
+  <div className={styles.transactionItem}>
     <p className={styles.month}>{month}</p>
     <div className={styles.wrapperTypeDate}>
       <span className={styles.type}>{typeTransaction}</span>
