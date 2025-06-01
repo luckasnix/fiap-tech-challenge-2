@@ -65,7 +65,7 @@
 
 .options li.bold {
   font-weight: 700;
-  background-color: var(--color-soft-green);
+  background-color: var(--color-light-green);
 }
 
 .options li:hover {
