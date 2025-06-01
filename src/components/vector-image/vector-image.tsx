@@ -60,6 +60,21 @@ const iconEye = (
   </svg>
 );
 
+const iconArrowDown = (
+  <svg
+    width="14"
+    height="8"
+    viewBox="0 0 14 8"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M0.3125 0.598145H13.6875L7 7.28564L0.3125 0.598145Z"
+      fill="#47A138"
+    />
+  </svg>
+);
+
 type VectorImageName =
   | "image-logo"
   | "icon-instagram"
@@ -67,7 +82,8 @@ type VectorImageName =
   | "icon-youtube"
   | "icon-edit-filled"
   | "icon-delete-filled"
-  | "icon-eye";
+  | "icon-eye"
+  | "icon-arrow-down";
 
 const vectorImageMap: Record<VectorImageName, JSX.Element> = {
   "image-logo": imageLogo,
@@ -77,6 +93,7 @@ const vectorImageMap: Record<VectorImageName, JSX.Element> = {
   "icon-edit-filled": iconEditFilled,
   "icon-delete-filled": iconDeleteFilled,
   "icon-eye": iconEye,
+  "icon-arrow-down": iconArrowDown,
 };
 
 export type VectorImageProps = Readonly<{
