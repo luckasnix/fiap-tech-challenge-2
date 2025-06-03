@@ -1,11 +1,11 @@
 "use client";
-
 import { useState } from "react";
 import { useWindowWidth } from "~/hooks/useWindowWidth";
-import { FinancialSummary } from "../financial-summary/financial-summary";
-import { SideMenu } from "../side-menu/side-menu";
-import { Statement } from "../statement/statement";
-import { TransactionModal } from "../transaction-modal/transaction-modal";
+import { FinancialSummary } from "~/components/financial-summary/financial-summary";
+import { SideMenu } from "~/components/side-menu/side-menu";
+import { Statement } from "~/components/statement/statement";
+import { TransactionModal } from "~/components/transaction-modal/transaction-modal";
+
 import styles from "./dashboard-main.module.css";
 
 export const DashboardMain = () => {
@@ -28,7 +28,6 @@ export const DashboardMain = () => {
         <FinancialSummary
           userName="Joana"
           date={Date.now()}
-          checkingAccountValue={250000}
           onNewTransactionButtonClick={openModal}
         />
 

@@ -2,6 +2,7 @@
 import { Button } from "~/components/button/button";
 import { VectorImage } from "~/components/vector-image/vector-image";
 import useStatementStore from "~/stores/useStatementStore";
+
 import styles from "./statement.module.css";
 import { TransactionItem } from "./transaction-item";
 

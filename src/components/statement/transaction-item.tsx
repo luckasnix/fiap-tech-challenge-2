@@ -4,6 +4,13 @@ import styles from "./transaction-item.module.css";
 
 export type TransactionType = "deposito" | "saque" | "transferencia";
 
+export const positiveTransactionTypes: TransactionType[] = ["deposito"];
+
+export const negativeTransactionTypes: TransactionType[] = [
+  "saque",
+  "transferencia",
+];
+
 export const transactionTypesMap: Record<TransactionType, string> = {
   deposito: "Depósito",
   saque: "Saque",
@@ -23,15 +30,22 @@ export const TransactionItem = ({
   transactionType,
   date,
   value,
-}: TransactionProps) => (
-  <div className={styles.transactionItem}>
-    <p className={styles.month}>{month}</p>
-    <div className={styles.wrapperTypeDate}>
-      <span className={styles.type}>
-        {transactionTypesMap[transactionType]}
-      </span>
-      <span className={styles.date}>{date}</span>
+}: TransactionProps) => {
+  const isNegativeTransaction =
+    negativeTransactionTypes.includes(transactionType);
+
+  return (
+    <div className={styles.transactionItem}>
+      <p className={styles.month}>{month}</p>
+      <div className={styles.wrapperTypeDate}>
+        <span className={styles.type}>
+          {transactionTypesMap[transactionType]}
+        </span>
+        <span className={styles.date}>{date}</span>
+      </div>
+      <p
+        className={styles.value}
+      >{`${isNegativeTransaction ? "-" : ""} ${formatCurrencyBRL(value)}`}</p>
     </div>
-    <p className={styles.value}>{formatCurrencyBRL(value)}</p>
-  </div>
-);
+  );
+};

@@ -1,6 +1,10 @@
 import { create } from "zustand";
 
-import type { TransactionProps } from "~/components/statement/transaction-item";
+import {
+  positiveTransactionTypes,
+  negativeTransactionTypes,
+  type TransactionProps,
+} from "~/components/statement/transaction-item";
 
 type Store = {
   transactions: Array<TransactionProps>;
@@ -10,7 +14,7 @@ type Store = {
     id: string,
     updatedData: Partial<TransactionProps>,
   ) => void;
-  getTotal: () => void;
+  getTotal: () => number;
 };
 
 const useStatementStore = create<Store>((set, get) => ({
@@ -29,7 +33,15 @@ const useStatementStore = create<Store>((set, get) => ({
     })),
   getTotal: () => {
     const { transactions } = get();
-    return transactions.reduce((sum, item) => sum + (item.value || 0), 0);
+    return transactions.reduce((accum, { value, transactionType }) => {
+      if (positiveTransactionTypes.includes(transactionType)) {
+        return accum + value;
+      }
+      if (negativeTransactionTypes.includes(transactionType)) {
+        return accum - value;
+      }
+      return accum;
+    }, 0);
   },
 }));
 

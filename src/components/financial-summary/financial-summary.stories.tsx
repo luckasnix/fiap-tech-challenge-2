@@ -46,11 +46,6 @@ Componente de resumo financeiro que exibe:
       description: "Data usada para exibição formatada.",
       defaultValue: Date.now(),
     },
-    checkingAccountValue: {
-      control: "number",
-      description: "Valor da conta corrente em reais.",
-      defaultValue: 1500,
-    },
     onNewTransactionButtonClick: {
       action: "clicked",
       description: "Função chamada ao clicar no botão 'Nova transação'.",
@@ -66,7 +61,6 @@ export const Default: Story = {
   args: {
     userName: "João",
     date: Date.now(),
-    checkingAccountValue: 1500,
   },
 };
 
@@ -74,6 +68,5 @@ export const WithoutUserName: Story = {
   args: {
     userName: undefined,
     date: Date.now(),
-    checkingAccountValue: 2450.75,
   },
 };
