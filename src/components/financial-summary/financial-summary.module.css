@@ -29,6 +29,12 @@
   color: var(--color-white);
 }
 
+.financialBalance {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
 .headingBox {
   display: flex;
   justify-content: flex-start;
@@ -52,8 +58,6 @@
 .divider {
   width: 100%;
   max-width: 180px;
-  margin-top: var(--spacing-4);
-  margin-bottom: var(--spacing-4);
   border-top-width: 2px;
   border-top-style: solid;
   border-top-color: var(--color-secondary);

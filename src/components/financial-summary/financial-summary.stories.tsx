@@ -20,5 +20,8 @@ export const Basic: Story = {
     userName: "Joana",
     date: Date.now(),
     checkingAccountValue: 1000,
+    onNewTransactionButtonClick: () => {
+      console.log("New transation button clicked!");
+    },
   },
 };

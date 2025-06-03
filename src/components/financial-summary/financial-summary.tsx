@@ -1,3 +1,4 @@
+import { Button } from "~/components/button/button";
 import { VectorImage } from "~/components/vector-image/vector-image";
 import { formatDateLong } from "~/utils/date";
 import { formatCurrencyBRL } from "~/utils/currency";
@@ -8,12 +9,14 @@ export type FinancialSummaryProps = Readonly<{
   userName?: string;
   date: number;
   checkingAccountValue: number;
+  onNewTransactionButtonClick: () => void;
 }>;
 
 export const FinancialSummary = ({
   userName,
   date,
   checkingAccountValue,
+  onNewTransactionButtonClick,
 }: FinancialSummaryProps) => (
   <div className={styles.financialSummary}>
     {userName ? (
@@ -33,6 +36,13 @@ export const FinancialSummary = ({
           <h4>Conta Corrente</h4>
           <span>{formatCurrencyBRL(checkingAccountValue)}</span>
         </div>
+        <Button
+          variant="dashPrimary"
+          size="large"
+          onClick={onNewTransactionButtonClick}
+        >
+          Nova transação
+        </Button>
       </div>
     </div>
   </div>

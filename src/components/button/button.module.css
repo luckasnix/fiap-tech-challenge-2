@@ -12,6 +12,18 @@
   padding: 0 var(--spacing-4);
 }
 
+.small {
+  width: 120px;
+}
+
+.medium {
+  width: 180px;
+}
+
+.large {
+  width: 260px;
+}
+
 /* Botão principal: fundo verde, texto preto */
 .button.homePrimary {
   background-color: var(--color-success);
@@ -35,6 +47,32 @@
 .button.homeSecondary:hover {
   background-color: var(--color-success);
   color: var(--color-white);
+}
+
+/* Botão principal do Dashboard: fundo laranja, texto branco */
+.button.dashPrimary {
+  background-color: var(--color-secondary);
+  color: var(--color-white);
+  border: 2px solid var(--color-secondary);
+}
+
+.button.dashPrimary:hover {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  border: 2px solid var(--color-secondary);
+}
+
+/* Botão principal do Modal: fundo azul, texto branco */
+.button.modalPrimary {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  border: 2px solid var(--color-primary);
+}
+
+.button.modalPrimary:hover {
+  background-color: var(--color-light-gray);
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
 }
 
 /* Botão ghost: sem fundo, sem borda */

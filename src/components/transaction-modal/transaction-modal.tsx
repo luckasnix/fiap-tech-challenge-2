@@ -1,9 +1,18 @@
 "use client";
 import { useState, useEffect, useRef, type ChangeEvent } from "react";
 
+import { Button } from "~/components/button/button";
+import { Dropdown } from "~/components/dropdown/dropdown";
 import { MoneyInput } from "~/components/money-input/money-input";
+import type { DropdownOption } from "~/models/dropdown-option.model";
 
 import styles from "./transaction-modal.module.css";
+
+const dropdownOptions: DropdownOption[] = [
+  { label: "Câmbio de Moeda", value: "cambio", selected: false },
+  { label: "DOC/TED", value: "doc_ted", selected: false },
+  { label: "Empréstimo e Financiamento", value: "emprestimo", selected: false },
+];
 
 export type TransactionModalProps = Readonly<{
   open: boolean;
@@ -49,14 +58,19 @@ export const TransactionModal = ({ open, onClose }: TransactionModalProps) => {
           &times;
         </button>
         <h2 className={styles.titleText}>Nova Transação</h2>
+        <Dropdown
+          label="Selecione o tipo de transação"
+          options={dropdownOptions}
+          onSelect={(option) => console.log(option)}
+        />
         <MoneyInput value={moneyValue} onChange={handleMoneyChange} />
-        <button
-          type="button"
-          className={styles.completeTransactionButton}
+        <Button
+          variant="modalPrimary"
+          size="large"
           onClick={handleSubmitTransaction}
         >
           Concluir transação
-        </button>
+        </Button>
       </div>
     </dialog>
   );
