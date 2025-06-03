@@ -1,5 +1,7 @@
+import type { TransactionType } from "~/components/statement/transaction-item";
+
 export interface DropdownOption {
   label: string;
-  value: string | number;
+  value: TransactionType;
   selected?: boolean;
 }

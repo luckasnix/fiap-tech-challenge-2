@@ -1,12 +1,13 @@
 import { create } from "zustand";
-import { TransactionProps } from "~/components/statement/transaction-item";
+
+import type { TransactionProps } from "~/components/statement/transaction-item";
 
 type Store = {
   transactions: Array<TransactionProps>;
   addTransaction: (transaction: TransactionProps) => void;
-  removeTransaction: (id: number) => void;
+  removeTransaction: (id: string) => void;
   updateTransaction: (
-    id: number,
+    id: string,
     updatedData: Partial<TransactionProps>,
   ) => void;
   getTotal: () => void;
@@ -16,11 +17,11 @@ const useStatementStore = create<Store>((set, get) => ({
   transactions: [],
   addTransaction: (transaction: TransactionProps) =>
     set((state) => ({ transactions: [...state.transactions, transaction] })),
-  removeTransaction: (id: number) =>
+  removeTransaction: (id: string) =>
     set((state) => ({
       transactions: state.transactions.filter((item) => item.id !== id),
     })),
-  updateTransaction: (id: number, updatedData: Partial<TransactionProps>) =>
+  updateTransaction: (id: string, updatedData: Partial<TransactionProps>) =>
     set((state) => ({
       transactions: state.transactions.map((item) =>
         item.id === id ? { ...item, ...updatedData } : item,

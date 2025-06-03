@@ -55,9 +55,9 @@ export default meta;
 type Story = StoryObj<typeof Dropdown>;
 
 const baseOptions: DropdownOption[] = [
-  { label: "Câmbio de Moeda", value: "cambio", selected: false },
-  { label: "DOC/TED", value: "doc_ted", selected: false },
-  { label: "Empréstimo e Financiamento", value: "emprestimo", selected: false },
+  { label: "Depósito", value: "deposito", selected: false },
+  { label: "Saque", value: "saque", selected: false },
+  { label: "Transferência", value: "transferencia", selected: false },
 ];
 
 export const Basic: Story = {
