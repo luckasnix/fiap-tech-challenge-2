@@ -3,25 +3,39 @@
   padding: var(--spacing-4) 0;
 }
 
-.header .container {
+.container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+  gap: var(--spacing-4);
 }
 
-.header .navbar {
+.navbar {
   display: flex;
   align-items: center;
-  gap: var(--spacing-16);
+  gap: var(--spacing-8);
 }
 
-.header .navbar svg {
-  width: 145px;
+.navbar svg {
+  width: 146px;
   fill: var(--color-success);
 }
 
-.header .buttons {
-  display: flex;
-  gap: var(--spacing-4);
+@media (max-width: 720px) {
+  .navbar svg {
+    width: 28px;
+  }
+}
+
+@media (max-width: 360px) {
+  .navbar {
+    width: 100%;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+  }
+
+  .navbar svg {
+    width: 146px;
+  }
 }

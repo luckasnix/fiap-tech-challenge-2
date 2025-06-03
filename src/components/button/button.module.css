@@ -7,13 +7,15 @@
   text-align: center;
   border-radius: var(--spacing-2);
   transition: all 0.3s ease;
-  min-width: 180px;
-  height: var(--spacing-12);
   padding: 0 var(--spacing-4);
 }
 
+.ghost {
+  width: auto;
+}
+
 .small {
-  width: 120px;
+  width: 140px;
 }
 
 .medium {
@@ -29,6 +31,7 @@
   background-color: var(--color-success);
   color: var(--color-black);
   border: 2px solid var(--color-success);
+  height: 52px;
 }
 
 .button.homePrimary:hover {
@@ -42,6 +45,7 @@
   background-color: var(--color-black);
   color: var(--color-success);
   border: 2px solid var(--color-success);
+  height: 52px;
 }
 
 .button.homeSecondary:hover {

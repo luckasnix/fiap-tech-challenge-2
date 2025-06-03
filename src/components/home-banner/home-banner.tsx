@@ -1,29 +1,14 @@
-import Image from "next/image";
+import { VectorImage } from "../vector-image/vector-image";
 import styles from "./home-banner.module.css";
 
 export type HomeBannerProps = Readonly<{
   title: string;
-  image: string;
-  width: number;
-  height: number;
-  alt: string;
 }>;
 
-export const HomeBanner = ({
-  title,
-  image,
-  width,
-  height,
-  alt,
-}: HomeBannerProps) => (
+export const HomeBanner = ({ title }: HomeBannerProps) => (
   <div className={styles.banner}>
-    <p className={styles.title}>{title}</p>
+    <span className={styles.title}>{title}</span>
 
-    <Image
-      src={`/images/${image}.svg`}
-      width={width}
-      height={height}
-      alt={alt}
-    />
+    <VectorImage name="image-banner" />
   </div>
 );

@@ -14,10 +14,9 @@ export const Dropdown = ({ label, options, onSelect }: DropdownProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState<DropdownOption | null>(null);
+  const toggleOpen = () => setOpen((prev) => !prev);
 
   useClickOutside(ref, open, () => setOpen(false));
-
-  const toggleOpen = () => setOpen((prev) => !prev);
 
   const handleSelect = (option: DropdownOption) => {
     options.forEach((opt) => {

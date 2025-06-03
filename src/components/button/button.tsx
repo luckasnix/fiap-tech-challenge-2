@@ -10,7 +10,7 @@ export type ButtonProps = Readonly<{
     | "homeSecondary"
     | "dashPrimary"
     | "modalPrimary";
-  size?: "small" | "medium" | "large";
+  size?: "ghost" | "small" | "medium" | "large";
 }>;
 
 export const Button = ({

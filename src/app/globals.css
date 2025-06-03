@@ -17,7 +17,6 @@ body {
 .container {
   width: 90%;
   max-width: 1200px;
-  min-width: 320px;
   margin: 0 auto;
 }
 
@@ -55,4 +54,16 @@ body {
   --spacing-14: 58px;
   --spacing-15: 60px;
   --spacing-16: 64px;
+}
+
+@media (max-width: 720px) {
+  .container {
+    max-width: 600px;
+  }
+}
+
+@media (max-width: 360px) {
+  .container {
+    max-width: 310px;
+  }
 }

@@ -1,6 +1,7 @@
 "use client";
 
-import { Button } from "../button/button";
+import { useWindowWidth } from "~/hooks/useWindowWidth";
+import { HomeButtons } from "../home-buttons/home-buttons";
 import { MenuNav } from "../menu-nav/menu-nav";
 import { VectorImage } from "../vector-image/vector-image";
 import styles from "./home-header.module.css";
@@ -12,35 +13,25 @@ export type HomeHeaderProps = Readonly<{
 }>;
 
 export const HomeHeader = () => {
+  const windowWidth = useWindowWidth();
   const navItems = [{ label: "Sobre" }, { label: "Serviços" }];
 
   return (
     <header className={styles.header}>
       <div className={`${styles.container} container`}>
         <div className={styles.navbar}>
-          <VectorImage name="image-logo" />
+          <VectorImage
+            name={
+              windowWidth > 720 || windowWidth < 360
+                ? "image-logo"
+                : "icon-logo"
+            }
+          />
+
           <MenuNav items={navItems} />
         </div>
 
-        <div className={styles.buttons}>
-          <Button
-            variant="homePrimary"
-            onClick={() => {
-              console.log("Abrir minha conta");
-            }}
-          >
-            Abrir minha conta
-          </Button>
-
-          <Button
-            variant="homeSecondary"
-            onClick={() => {
-              console.log("Abrir minha conta");
-            }}
-          >
-            Já tenho conta
-          </Button>
-        </div>
+        {windowWidth > 360 ? <HomeButtons /> : null}
       </div>
     </header>
   );

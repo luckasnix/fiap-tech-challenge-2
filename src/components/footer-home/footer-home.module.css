@@ -1,13 +1,16 @@
 .footer {
   background-color: var(--color-black);
   display: flex;
-  justify-content: center;
-  padding: 2rem 0;
+  justify-content: space-between;
+  padding: var(--spacing-6) 0;
 }
 
 .innerWrapper {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-8);
 }
 
 .credits {
@@ -24,7 +27,7 @@
 }
 
 .credits svg {
-  width: 145px;
+  width: 146px;
   fill: var(--color-white);
 }
 
