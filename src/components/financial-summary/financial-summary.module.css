@@ -1,10 +1,12 @@
 .financialSummary {
   width: 100%;
+  max-width: 680px;
   height: 402px;
   padding: var(--spacing-6);
   background-color: var(--color-primary);
   border-radius: var(--spacing-2);
-  display: grid;
+  display: flex;
+  flex-direction: column;
   align-content: start;
   gap: var(--spacing-6);
 }
@@ -16,12 +18,6 @@
   color: var(--color-white);
 }
 
-.financeDetails {
-  display: grid;
-  grid-auto-flow: column;
-  grid-template-columns: 7fr 5fr;
-}
-
 .dateLong {
   font-family: var(--font-inter);
   font-size: 13px;
@@ -30,6 +26,11 @@
 }
 
 .financialBalance {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.balanceBox {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-4);
@@ -81,4 +82,10 @@
   font-size: 31px;
   font-weight: 400;
   color: var(--color-white);
+}
+
+@media (max-width: 720px) {
+  .financialSummary {
+    max-width: 600px;
+  }
 }

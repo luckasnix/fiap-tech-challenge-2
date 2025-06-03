@@ -1,9 +1,9 @@
 "use client";
+import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 import { Button } from "../button/button";
 import styles from "./header-dashboard.module.css";
-import Image from "next/image";
-import Link from "next/link";
 
 export type HeaderProps = Readonly<{
   name: string;
@@ -14,9 +14,13 @@ export const HeaderDashboard = ({ name }: HeaderProps) => {
 
   return (
     <header className={styles.header}>
-      <nav className={styles.nav}>
+      <nav className={`${styles.nav} container`}>
         <div className={styles.menuLeft}>
-          <Button variant="ghost" onClick={() => setIsModalOpen(true)}>
+          <Button
+            variant="ghost"
+            size="ghost"
+            onClick={() => setIsModalOpen(true)}
+          >
             <Image
               src="/icone-hamburguer.svg"
               alt="Ícone hamburguer"
@@ -40,7 +44,11 @@ export const HeaderDashboard = ({ name }: HeaderProps) => {
         className={`${styles.modalMenuHidden} ${isModalOpen ? styles["isOpen"] : ""}`}
       >
         <div className={styles.closeIconWrapper}>
-          <Button variant="ghost" onClick={() => setIsModalOpen(false)}>
+          <Button
+            variant="ghost"
+            size="ghost"
+            onClick={() => setIsModalOpen(false)}
+          >
             <Image
               src="/icone-fechar.svg"
               alt="Ícone de fechar"

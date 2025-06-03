@@ -24,9 +24,9 @@ export const FinancialSummary = ({
     ) : (
       <h2 className={styles.greetingText}>{`Olá! :)`}</h2>
     )}
-    <div className={styles.financeDetails}>
-      <span className={styles.dateLong}>{formatDateLong(date)}</span>
-      <div className={styles.financialBalance}>
+    <span className={styles.dateLong}>{formatDateLong(date)}</span>
+    <div className={styles.financialBalance}>
+      <div className={styles.balanceBox}>
         <div className={styles.headingBox}>
           <h3>Saldo</h3>
           <VectorImage name="icon-eye" />

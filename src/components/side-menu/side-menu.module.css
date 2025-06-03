@@ -2,7 +2,6 @@
   width: 180px;
   display: flex;
   align-items: center;
-  justify-content: center;
   flex-direction: column;
   font-family: var(--font-inter);
   background-color: var(--color-quaternary);
