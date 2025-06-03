@@ -1,34 +1,68 @@
 import type { Meta, StoryObj } from "@storybook/react";
-
 import { Dropdown } from "./dropdown";
+import type { DropdownOption } from "~/models/dropdown-option.model";
 
-const meta = {
+const meta: Meta<typeof Dropdown> = {
   title: "Components/Dropdown",
   component: Dropdown,
   parameters: {
     layout: "centered",
+    docs: {
+      description: {
+        component: `
+Componente Dropdown reutilizável com suporte à seleção de uma opção entre várias.
+
+**Propriedades:**
+- \`label\`: texto exibido quando nenhuma opção está selecionada.
+- \`options\`: lista de opções exibidas.
+- \`onSelect\`: função chamada ao selecionar uma opção.
+
+**Exemplo de uso:**
+\`\`\`tsx
+<Dropdown
+  label="Selecione"
+  options={[
+    { label: "Opção 1", value: "1", selected: false },
+    { label: "Opção 2", value: "2", selected: false }
+  ]}
+  onSelect={(option) => console.log(option)}
+/>
+\`\`\`
+        `,
+      },
+    },
   },
   tags: ["autodocs"],
-} satisfies Meta<typeof Dropdown>;
+  argTypes: {
+    label: {
+      control: "text",
+      description: "Texto exibido quando nenhuma opção está selecionada.",
+      defaultValue: "Select an option",
+    },
+    options: {
+      control: { type: "object" },
+      description: "Lista de opções disponíveis no dropdown.",
+    },
+    onSelect: {
+      action: "selected",
+      description: "Função chamada ao selecionar uma opção.",
+    },
+  },
+};
 
 export default meta;
 
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof Dropdown>;
+
+const baseOptions: DropdownOption[] = [
+  { label: "Câmbio de Moeda", value: "cambio", selected: false },
+  { label: "DOC/TED", value: "doc_ted", selected: false },
+  { label: "Empréstimo e Financiamento", value: "emprestimo", selected: false },
+];
 
 export const Basic: Story = {
   args: {
     label: "Selecione o tipo de transação",
-    options: [
-      { label: "Câmbio de Moeda", value: "cambio", selected: false },
-      { label: "DOC/TED", value: "doc_ted", selected: false },
-      {
-        label: "Empréstimo e Financiamento",
-        value: "emprestimo",
-        selected: false,
-      },
-    ],
-    onSelect: () => {
-      console.log("Option selected!");
-    },
+    options: baseOptions,
   },
 };
