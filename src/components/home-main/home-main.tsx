@@ -1,9 +1,8 @@
 "use client";
-
 import { useWindowWidth } from "~/hooks/useWindowWidth";
-import { HomeBanner } from "../home-banner/home-banner";
-import { HomeButtons } from "../home-buttons/home-buttons";
-import { HomeHighlight } from "../home-highlight/home-highlight";
+import { HomeBanner } from "~/components/home-banner/home-banner";
+import { HomeButtons } from "~/components/home-buttons/home-buttons";
+import { HomeHighlight } from "~/components/home-highlight/home-highlight";
 import styles from "./home-main.module.css";
 
 export const HomeMain = () => {

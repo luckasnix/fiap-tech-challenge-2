@@ -1,9 +1,9 @@
 "use client";
-
 import { useWindowWidth } from "~/hooks/useWindowWidth";
-import { HomeButtons } from "../home-buttons/home-buttons";
-import { MenuNav } from "../menu-nav/menu-nav";
-import { VectorImage } from "../vector-image/vector-image";
+import { HomeButtons } from "~/components/home-buttons/home-buttons";
+import { MenuNav } from "~/components/menu-nav/menu-nav";
+import { VectorImage } from "~/components/vector-image/vector-image";
+
 import styles from "./home-header.module.css";
 
 export type HomeHeaderProps = Readonly<{

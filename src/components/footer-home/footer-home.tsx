@@ -1,5 +1,4 @@
 import Link from "next/link";
-
 import { FooterColumn } from "~/components/footer-column/footer-column";
 import { VectorImage } from "~/components/vector-image/vector-image";
 

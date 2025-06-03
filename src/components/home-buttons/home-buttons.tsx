@@ -1,7 +1,7 @@
 "use client";
-
 import { useWindowWidth } from "~/hooks/useWindowWidth";
-import { Button } from "../button/button";
+import { Button } from "~/components/button/button";
+
 import styles from "./home-buttons.module.css";
 
 export type HomeHeaderProps = Readonly<{

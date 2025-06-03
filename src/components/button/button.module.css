@@ -58,6 +58,7 @@
   background-color: var(--color-secondary);
   color: var(--color-white);
   border: 2px solid var(--color-secondary);
+  height: 52px;
 }
 
 .button.dashPrimary:hover {
@@ -71,6 +72,7 @@
   background-color: var(--color-primary);
   color: var(--color-white);
   border: 2px solid var(--color-primary);
+  height: 52px;
 }
 
 .button.modalPrimary:hover {
