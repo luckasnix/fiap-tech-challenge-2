@@ -1,10 +1,14 @@
-import { Button } from "../button/button";
-import { VectorImage } from "../vector-image/vector-image";
+"use client";
+import { Button } from "~/components/button/button";
+import { VectorImage } from "~/components/vector-image/vector-image";
+import useStatementStore from "~/stores/useStatementStore";
+
 import { TransactionItem } from "./transaction-item";
 import styles from "./statement.module.css";
-import { statement } from "./statement-mock";
 
 export const Statement = () => {
+  const transactions = useStatementStore(({ transactions }) => transactions);
+
   return (
     <div className={styles.statement}>
       <div className={styles.statementWrapper}>
@@ -20,7 +24,7 @@ export const Statement = () => {
           </div>
         </header>
         <div className={styles.statementListWrapper}>
-          {statement.map((transaction) => (
+          {transactions.map((transaction) => (
             <TransactionItem
               key={transaction.id}
               {...transaction}

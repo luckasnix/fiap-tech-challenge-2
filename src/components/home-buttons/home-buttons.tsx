@@ -1,4 +1,6 @@
 "use client";
+import { useRouter } from "next/navigation";
+
 import { useWindowWidth } from "~/hooks/useWindowWidth";
 import { Button } from "~/components/button/button";
 
@@ -11,7 +13,12 @@ export type HomeHeaderProps = Readonly<{
 }>;
 
 export const HomeButtons = () => {
+  const router = useRouter();
   const windowWidth = useWindowWidth();
+
+  const goToDashboard = () => {
+    router.push("/dashboard");
+  };
 
   return (
     <div className={styles.buttons}>
@@ -19,17 +26,16 @@ export const HomeButtons = () => {
         variant="homePrimary"
         size={windowWidth > 720 ? "medium" : "small"}
         onClick={() => {
-          console.log("Abrir minha conta");
+          goToDashboard();
         }}
       >
         {windowWidth > 720 ? "Abrir minha conta" : "Abrir conta"}
       </Button>
-
       <Button
         variant="homeSecondary"
         size={windowWidth > 720 ? "medium" : "small"}
         onClick={() => {
-          console.log("Já tenho conta");
+          goToDashboard();
         }}
       >
         Já tenho conta
