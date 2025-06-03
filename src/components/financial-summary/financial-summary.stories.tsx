@@ -1,27 +1,79 @@
 import type { Meta, StoryObj } from "@storybook/react";
-
 import { FinancialSummary } from "./financial-summary";
 
-const meta = {
+const meta: Meta<typeof FinancialSummary> = {
   title: "Components/FinancialSummary",
   component: FinancialSummary,
   parameters: {
     layout: "centered",
+    docs: {
+      description: {
+        component: `
+Componente de resumo financeiro que exibe:
+- Saudações ao usuário
+- Data formatada
+- Saldo da conta corrente
+- Botão para iniciar uma nova transação
+
+**Propriedades:**
+- \`userName\` (opcional): nome do usuário.
+- \`date\`: timestamp da data exibida.
+- \`checkingAccountValue\`: valor da conta corrente em centavos/reais.
+- \`onNewTransactionButtonClick\`: função disparada ao clicar no botão "Nova transação".
+
+**Exemplo de uso:**
+\`\`\`tsx
+<FinancialSummary
+  userName="João"
+  date={Date.now()}
+  checkingAccountValue={1500}
+  onNewTransactionButtonClick={() => console.log("Nova transação")}
+ />
+\`\`\`
+        `,
+      },
+    },
   },
   tags: ["autodocs"],
-} satisfies Meta<typeof FinancialSummary>;
+  argTypes: {
+    userName: {
+      control: "text",
+      description: "Nome do usuário exibido na saudação.",
+      defaultValue: "João",
+    },
+    date: {
+      control: "date",
+      description: "Data usada para exibição formatada.",
+      defaultValue: Date.now(),
+    },
+    checkingAccountValue: {
+      control: "number",
+      description: "Valor da conta corrente em reais.",
+      defaultValue: 1500,
+    },
+    onNewTransactionButtonClick: {
+      action: "clicked",
+      description: "Função chamada ao clicar no botão 'Nova transação'.",
+    },
+  },
+};
 
 export default meta;
 
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof FinancialSummary>;
 
-export const Basic: Story = {
+export const Default: Story = {
   args: {
-    userName: "Joana",
+    userName: "João",
     date: Date.now(),
-    checkingAccountValue: 1000,
-    onNewTransactionButtonClick: () => {
-      console.log("New transation button clicked!");
-    },
+    checkingAccountValue: 1500,
+  },
+};
+
+export const WithoutUserName: Story = {
+  args: {
+    userName: undefined,
+    date: Date.now(),
+    checkingAccountValue: 2450.75,
   },
 };
