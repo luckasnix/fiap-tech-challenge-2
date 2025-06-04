@@ -18,7 +18,7 @@ export const FinancialSummary = ({
   date,
   onNewTransactionButtonClick,
 }: FinancialSummaryProps) => {
-  const getTotal = useStatementStore(({ getTotal }) => getTotal);
+  const total = useStatementStore(({ total }) => total);
 
   return (
     <div className={styles.financialSummary}>
@@ -37,7 +37,7 @@ export const FinancialSummary = ({
           <div className={styles.divider} />
           <div className={styles.checkingAccount}>
             <h4>Conta Corrente</h4>
-            <span>{formatCurrencyBRL(getTotal())}</span>
+            <span>{formatCurrencyBRL(total)}</span>
           </div>
           <Button
             variant="dashPrimary"
