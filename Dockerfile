@@ -9,6 +9,7 @@ COPY package.json package-lock.json* ./
 RUN npm ci
 
 COPY . .
+ENV NEXT_CONFIG_OUTPUT=standalone
 RUN npm run build
 
 FROM base AS production
