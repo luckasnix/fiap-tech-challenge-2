@@ -26,6 +26,10 @@
   width: 260px;
 }
 
+.full {
+  width: 100%;
+}
+
 /* Botão principal: fundo verde, texto preto */
 .button.homePrimary {
   background-color: var(--color-success);
