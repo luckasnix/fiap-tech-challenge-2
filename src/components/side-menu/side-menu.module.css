@@ -10,6 +10,11 @@
   user-select: none;
 }
 
+.linkWrapper {
+  text-decoration: none;
+  color: inherit;
+}
+
 .item {
   width: 128px;
   display: flex;
