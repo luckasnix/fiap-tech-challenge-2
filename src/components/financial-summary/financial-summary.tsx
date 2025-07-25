@@ -10,7 +10,7 @@ import styles from "./financial-summary.module.css";
 export type FinancialSummaryProps = Readonly<{
   userName?: string;
   date: number;
-  onNewTransactionButtonClick: () => void;
+  onNewTransactionButtonClick?: () => void;
 }>;
 
 export const FinancialSummary = ({
@@ -39,13 +39,16 @@ export const FinancialSummary = ({
             <h4>Conta Corrente</h4>
             <span>{formatCurrencyBRL(total)}</span>
           </div>
-          <Button
-            variant="dashPrimary"
-            size="large"
-            onClick={onNewTransactionButtonClick}
-          >
-            Nova transação
-          </Button>
+          {
+            onNewTransactionButtonClick && <Button
+              variant="dashPrimary"
+              size="large"
+              onClick={onNewTransactionButtonClick}
+            >
+              Nova transação
+            </Button>
+          }
+
         </div>
       </div>
     </div>
