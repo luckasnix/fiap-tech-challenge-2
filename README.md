@@ -20,32 +20,48 @@ Siga as etapas abaixo para configurar e executar o projeto em seu ambiente local
     cd fiap-tech-challenge-2
     ```
 
-4. Instale as dependências:
+4. Crie o arquivo de variáveis de ambiente:
+
+    No diretório raiz do projeto, crie um arquivo chamado `.env` e adicione a variável `NEXT_PUBLIC_BACKEND_URL`, que deve conter a URL usada pelo backend.
+
+5. Instale as dependências:
 
     ```bash
     npm install
     ```
 
-5. Execute o servidor de desenvolvimento:
+6. Execute o servidor de desenvolvimento:
 
     ```bash
     npm run dev
     ```
 
-6. Abra o seu navegador em [http://localhost:3000](http://localhost:3000)
+7. Abra o seu navegador em [http://localhost:3000](http://localhost:3000)
 
 ## Executando o Projeto com o Docker
 
 1. Construa a imagem:
 
     ```bash
-    docker build --tag=NOME_IMAGE:TAG_IMAGEM .
+    docker build --build-arg NEXT_PUBLIC_BACKEND_URL=URL_BACKEND --tag=NOME_IMAGEM:TAG_IMAGEM .
+    ```
+
+    Exemplo:
+
+    ```bash
+    docker build --build-arg NEXT_PUBLIC_BACKEND_URL=http://localhost:8000 --tag=fiap-tc-frontend:latest .
     ```
 
 2. Execute o contêiner:
 
     ```bash
-    docker run -p 3000:3000 -d --rm --name=NOME_CONTÊINER NOME_IMAGE:TAG_IMAGEM
+    docker run -p 3000:3000 -d --rm --name=NOME_CONTÊINER NOME_IMAGEM:TAG_IMAGEM
+    ```
+
+    Exemplo:
+
+    ```bash
+    docker run -p 3000:3000 -d --rm --name=fiap-tc-frontend-app fiap-tc-frontend:latest
     ```
 
 ## Executando a Documentação do Design System
