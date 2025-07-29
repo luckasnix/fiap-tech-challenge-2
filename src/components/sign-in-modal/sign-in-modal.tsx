@@ -1,20 +1,23 @@
 "use client";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, type FormEventHandler } from "react";
 import { useForm } from "@tanstack/react-form";
 import { z } from "zod";
 
-import styles from "./sign-in-modal.module.css";
 import { Button } from "~/components/button/button";
+
+import styles from "./sign-in-modal.module.css";
 
 const schema = z.object({
   email: z.email({ message: "Email inválido" }),
   password: z.string().min(8, { message: "Mínimo 8 caracteres" }),
 });
 
+export type SignInValue = z.infer<typeof schema>;
+
 export type SignInModalProps = Readonly<{
   open: boolean;
   onClose: () => void;
-  onSignIn: (data: { email: string; password: string }) => void;
+  onSignIn: (data: SignInValue) => void;
 }>;
 
 export const SignInModal = ({ open, onClose, onSignIn }: SignInModalProps) => {
@@ -42,6 +45,11 @@ export const SignInModal = ({ open, onClose, onSignIn }: SignInModalProps) => {
     },
   });
 
+  const submitForm: FormEventHandler<HTMLFormElement> = (event) => {
+    event.preventDefault();
+    form.handleSubmit();
+  };
+
   return (
     <dialog className={styles.modal} ref={dialogRef}>
       <div className={styles.innerContainer}>
@@ -53,18 +61,14 @@ export const SignInModal = ({ open, onClose, onSignIn }: SignInModalProps) => {
           &times;
         </button>
         <h2 className={styles.titleText}>Entrar</h2>
-        <form
-          className={styles.form}
-          onSubmit={form.handleSubmit}
-          autoComplete="off"
-        >
+        <form className={styles.form} onSubmit={submitForm} autoComplete="off">
           <div className={styles.field}>
             <label htmlFor="email">Email</label>
             <form.Field name="email">
               {(field) => (
                 <>
                   <input
-                    id="email"
+                    id="sign-in-email"
                     type="email"
                     value={field.state.value}
                     onChange={(e) => field.handleChange(e.target.value)}
@@ -85,7 +89,7 @@ export const SignInModal = ({ open, onClose, onSignIn }: SignInModalProps) => {
               {(field) => (
                 <>
                   <input
-                    id="password"
+                    id="sign-in-password"
                     type="password"
                     value={field.state.value}
                     onChange={(e) => field.handleChange(e.target.value)}

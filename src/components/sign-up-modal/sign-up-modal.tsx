@@ -1,21 +1,30 @@
 "use client";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, type FormEventHandler } from "react";
 import { useForm } from "@tanstack/react-form";
 import { z } from "zod";
 
-import styles from "./sign-up-modal.module.css";
 import { Button } from "~/components/button/button";
 
+import styles from "./sign-up-modal.module.css";
+
 const schema = z.object({
-  name: z.string().min(3, { message: "Nome deve ter ao menos 3 caracteres" }),
-  email: z.string().email({ message: "Email inválido" }),
+  username: z
+    .string()
+    .min(3, { message: "Nome deve ter ao menos 3 caracteres" }),
+  email: z.email({ message: "Email inválido" }),
   password: z.string().min(8, { message: "Mínimo 8 caracteres" }),
 });
+
+export type SignUpValue = z.infer<typeof schema>;
 
 export type SignUpModalProps = Readonly<{
   open: boolean;
   onClose: () => void;
-  onSignUp: (data: { name: string; email: string; password: string }) => void;
+  onSignUp: (data: {
+    username: string;
+    email: string;
+    password: string;
+  }) => void;
 }>;
 
 export const SignUpModal = ({ open, onClose, onSignUp }: SignUpModalProps) => {
@@ -32,7 +41,7 @@ export const SignUpModal = ({ open, onClose, onSignUp }: SignUpModalProps) => {
   }, [open]);
 
   const form = useForm({
-    defaultValues: { name: "", email: "", password: "" },
+    defaultValues: { username: "", email: "", password: "" },
     onSubmit: async ({ value }) => {
       onSignUp(value);
       form.reset();
@@ -42,6 +51,11 @@ export const SignUpModal = ({ open, onClose, onSignUp }: SignUpModalProps) => {
       onSubmit: schema,
     },
   });
+
+  const submitForm: FormEventHandler<HTMLFormElement> = (event) => {
+    event.preventDefault();
+    form.handleSubmit();
+  };
 
   return (
     <dialog className={styles.modal} ref={dialogRef}>
@@ -54,18 +68,14 @@ export const SignUpModal = ({ open, onClose, onSignUp }: SignUpModalProps) => {
           &times;
         </button>
         <h2 className={styles.titleText}>Cadastrar</h2>
-        <form
-          className={styles.form}
-          onSubmit={form.handleSubmit}
-          autoComplete="off"
-        >
+        <form className={styles.form} onSubmit={submitForm} autoComplete="off">
           <div className={styles.field}>
-            <label htmlFor="name">Nome Completo</label>
-            <form.Field name="name">
+            <label htmlFor="username">Nome de Usuário</label>
+            <form.Field name="username">
               {(field) => (
                 <>
                   <input
-                    id="name"
+                    id="sign-up-username"
                     type="text"
                     value={field.state.value}
                     onChange={(e) => field.handleChange(e.target.value)}
@@ -86,7 +96,7 @@ export const SignUpModal = ({ open, onClose, onSignUp }: SignUpModalProps) => {
               {(field) => (
                 <>
                   <input
-                    id="email"
+                    id="sign-up-email"
                     type="email"
                     value={field.state.value}
                     onChange={(e) => field.handleChange(e.target.value)}
@@ -107,7 +117,7 @@ export const SignUpModal = ({ open, onClose, onSignUp }: SignUpModalProps) => {
               {(field) => (
                 <>
                   <input
-                    id="password"
+                    id="sign-up-password"
                     type="password"
                     value={field.state.value}
                     onChange={(e) => field.handleChange(e.target.value)}
