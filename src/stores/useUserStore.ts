@@ -1,19 +1,17 @@
 import { create } from "zustand";
 
-type User = Readonly<{
-  name: string;
-  email: string;
-  password: string;
-}>;
-
-type Store = {
-  user: User | null;
-  setUser: (user: User) => void;
+export type UserState = {
+  username: string | null;
+  token: string | null;
+  setUsername: (username: string) => void;
+  setToken: (token: string) => void;
+  clearUser: () => void;
 };
 
-const useUserStore = create<Store>((set) => ({
-  user: null,
-  setUser: (user: User) => set({ user: user }),
+export const useUserStore = create<UserState>((set) => ({
+  username: null,
+  token: null,
+  setUsername: (username) => set({ username }),
+  setToken: (token) => set({ token }),
+  clearUser: () => set({ username: null, token: null }),
 }));
-
-export default useUserStore;

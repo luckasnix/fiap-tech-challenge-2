@@ -3,7 +3,7 @@ import { useWindowWidth } from "~/hooks/useWindowWidth";
 import { HomeButtons } from "~/components/home-buttons/home-buttons";
 import { MenuNav } from "~/components/menu-nav/menu-nav";
 import { VectorImage } from "~/components/vector-image/vector-image";
-import { useAuth } from "~/contexts/auth";
+import { useAuthStore } from "~/stores/useAuthStore";
 
 import styles from "./home-header.module.css";
 
@@ -24,7 +24,8 @@ export type HomeHeaderProps = Readonly<{
 
 export const HomeHeader = () => {
   const windowWidth = useWindowWidth();
-  const { openSignInModal, openSignUpModal } = useAuth();
+  const openSignInModal = useAuthStore((state) => state.openSignInModal);
+  const openSignUpModal = useAuthStore((state) => state.openSignUpModal);
 
   return (
     <header className={styles.header}>
