@@ -5,11 +5,13 @@ import { FinancialSummary } from "~/components/financial-summary/financial-summa
 import { SideMenu } from "~/components/side-menu/side-menu";
 import { Statement } from "~/components/statement/statement";
 import { TransactionModal } from "~/components/transaction-modal/transaction-modal";
+import { useUserStore } from "~/stores/useUserStore";
 
 import styles from "./dashboard-main.module.css";
 
 export const DashboardMain = () => {
   const windowWidth = useWindowWidth();
+  const username = useUserStore((state) => state.username);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {
@@ -24,16 +26,13 @@ export const DashboardMain = () => {
     <main className={styles.main}>
       <div className={`${styles.dashboard} container`}>
         {windowWidth > 360 ? <SideMenu /> : null}
-
         <FinancialSummary
-          userName="Joana"
+          username={username}
           date={Date.now()}
           onNewTransactionButtonClick={openModal}
         />
-
         <Statement />
       </div>
-
       <TransactionModal open={isModalOpen} onClose={closeModal} />
     </main>
   );

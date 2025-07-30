@@ -2,8 +2,6 @@ import type { ReactNode } from "react";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
-import { AuthProvider } from "~/contexts/auth";
-
 import "./globals.css";
 
 const inter = Inter({
@@ -13,9 +11,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "FIAP - 1º Tech Challenge",
+  title: "FIAP - 2º Tech Challenge",
   description:
-    "Aplicação do 1º Tech Challenge da pós-graduação de Front-end Engineering da FIAP",
+    "Aplicação do 2º Tech Challenge da pós-graduação de Front-end Engineering da FIAP",
 };
 
 export default function RootLayout({
@@ -25,9 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body className={inter.variable}>
-        <AuthProvider>{children}</AuthProvider>
-      </body>
+      <body className={inter.variable}>{children}</body>
     </html>
   );
 }
