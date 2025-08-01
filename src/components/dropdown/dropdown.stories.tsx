@@ -57,7 +57,6 @@ type Story = StoryObj<typeof Dropdown>;
 const baseOptions: DropdownOption[] = [
   { label: "Depósito", value: "deposito", selected: false },
   { label: "Saque", value: "saque", selected: false },
-  { label: "Transferência", value: "transferencia", selected: false },
 ];
 
 export const Basic: Story = {

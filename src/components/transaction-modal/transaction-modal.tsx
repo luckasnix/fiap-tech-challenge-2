@@ -1,20 +1,17 @@
 "use client";
-import { useState, useEffect, useRef, type ChangeEvent } from "react";
-
+import { useEffect, useRef, useState, type ChangeEvent } from "react";
 import { Button } from "~/components/button/button";
 import { Dropdown } from "~/components/dropdown/dropdown";
 import { MoneyInput } from "~/components/money-input/money-input";
-import type { TransactionType } from "~/components/statement/transaction-item";
 import type { DropdownOption } from "~/models/dropdown-option.model";
 import useStatementStore from "~/stores/useStatementStore";
-import { getMonthName, getDateShort } from "~/utils/date";
-
+import { useUserStore } from "~/stores/useUserStore";
+import { TransactionType } from "~/types/services";
 import styles from "./transaction-modal.module.css";
 
 const dropdownOptions: DropdownOption[] = [
   { label: "Depósito", value: "deposito", selected: false },
   { label: "Saque", value: "saque", selected: false },
-  { label: "Transferência", value: "transferencia", selected: false },
 ];
 
 export type TransactionModalProps = Readonly<{
@@ -30,6 +27,7 @@ export const TransactionModal = ({ open, onClose }: TransactionModalProps) => {
   const addTransaction = useStatementStore(
     ({ addTransaction }) => addTransaction,
   );
+  const token = useUserStore((state) => state.token);
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -48,17 +46,13 @@ export const TransactionModal = ({ open, onClose }: TransactionModalProps) => {
     setMoneyValue(formatted);
   };
 
-  const handleSubmitTransaction = () => {
+  const handleSubmitTransaction = async () => {
     if (!currentTransactionType) {
       return;
     }
-    const currentDate = getDateShort();
-    const monthNumber = Number(currentDate.split("/")[1]);
-    addTransaction({
-      id: crypto.randomUUID(),
-      month: getMonthName(monthNumber - 1),
+    await addTransaction({
+      token: token ?? "",
       transactionType: currentTransactionType,
-      date: currentDate,
       value: Number(moneyValue.replace(",", ".")) * 100,
     });
     setMoneyValue("0,00");

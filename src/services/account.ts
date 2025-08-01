@@ -51,12 +51,9 @@ export const createTransaction = async ({
   return data;
 };
 
-export const getStatement = async ({
-  token,
-  accountId,
-}: GetStatementParams) => {
+export const getStatement = async ({ token }: GetStatementParams) => {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_BACKEND_URL}/account/${accountId}/statement`,
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}/account/statement`,
     {
       headers: {
         Authorization: `Bearer ${token}`,
