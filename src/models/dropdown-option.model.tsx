@@ -1,4 +1,4 @@
-import type { TransactionType } from "~/components/statement/transaction-item";
+import { TransactionType } from "~/types/services";
 
 export interface DropdownOption {
   label: string;
