@@ -59,13 +59,13 @@ export const HeaderDashboard = ({ name }: HeaderProps) => {
         </div>
         <ul className={styles.ul}>
           <li>
-            <Link href="#">Início</Link>
+            <Link href="/dashboard">Início</Link>
           </li>
           <li>
             <Link href="#">Transferências</Link>
           </li>
           <li>
-            <Link href="#">Investimentos</Link>
+            <Link href="/investimentos">Investimentos</Link>
           </li>
           <li>
             <Link href="#">Outros serviços</Link>
