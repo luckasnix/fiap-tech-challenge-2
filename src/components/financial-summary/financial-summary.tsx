@@ -7,11 +7,11 @@ import { formatCurrencyBRL } from "~/utils/currency";
 
 import styles from "./financial-summary.module.css";
 
-export type FinancialSummaryProps = Readonly<{
+export type FinancialSummaryProps = {
   username: string | null;
   date: number;
   onNewTransactionButtonClick?: () => void;
-}>;
+};
 
 export const FinancialSummary = ({
   username,
@@ -39,16 +39,15 @@ export const FinancialSummary = ({
             <h4>Conta Corrente</h4>
             <span>{formatCurrencyBRL(total)}</span>
           </div>
-          {
-            onNewTransactionButtonClick && <Button
+          {onNewTransactionButtonClick && (
+            <Button
               variant="dashPrimary"
               size="large"
               onClick={onNewTransactionButtonClick}
             >
               Nova transação
             </Button>
-          }
-
+          )}
         </div>
       </div>
     </div>

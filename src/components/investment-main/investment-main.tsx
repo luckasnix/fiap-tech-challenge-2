@@ -4,25 +4,40 @@ import { useWindowWidth } from "~/hooks/useWindowWidth";
 import { FinancialSummary } from "~/components/financial-summary/financial-summary";
 import { SideMenu } from "~/components/side-menu/side-menu";
 import { Statement } from "~/components/statement/statement";
-import { TransactionModal } from "~/components/transaction-modal/transaction-modal";
 
 import styles from "./investment-main.module.css";
+import { ApexOptions } from "apexcharts";
 
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
-const investmentData = {
+type InvestmentDataType = {
+  total: number;
+  rendaFixa: number;
+  rendaVariavel: number;
+  chartData: {
+    series: number[];
+    labels: string[];
+  };
+};
+
+const investmentData: InvestmentDataType = {
   total: 50000,
   rendaFixa: 36000,
   rendaVariavel: 14000,
   chartData: {
     series: [35, 25, 20, 20], // Porcentagens para cada categoria
-    labels: ["Fundos de investimento", "Tesouro Direto", "Previdência Privada", "Bolsa de Valores"]
-  }
+    labels: [
+      "Fundos de investimento",
+      "Tesouro Direto",
+      "Previdência Privada",
+      "Bolsa de Valores",
+    ],
+  },
 };
 export const InvestmentMain = () => {
   const windowWidth = useWindowWidth();
 
-  const chartOptions = {
+  const chartOptions: ApexOptions = {
     chart: {
       type: "donut" as const,
       background: "transparent",
@@ -34,7 +49,6 @@ export const InvestmentMain = () => {
       position: "right" as const,
       fontSize: "14px",
       fontFamily: "Inter, sans-serif",
-      verticalAlign: "middle" as const,
       offsetX: 60,
       itemMargin: {
         horizontal: 10,
@@ -44,9 +58,7 @@ export const InvestmentMain = () => {
         colors: "#FFFFFF",
       },
       markers: {
-        width: 12,
-        height: 12,
-        radius: 6,
+        size: 6,
         offsetX: -10,
       },
     },
@@ -82,11 +94,8 @@ export const InvestmentMain = () => {
       <div className={`${styles.dashboard} container`}>
         {windowWidth > 360 ? <SideMenu /> : null}
 
-        <div style={{ flex: 'auto' }}>
-          <FinancialSummary
-            userName="Joana"
-            date={Date.now()}
-          />
+        <div style={{ flex: "auto" }}>
+          <FinancialSummary username="Joana" date={Date.now()} />
 
           <div className={styles.investmentContainer}>
             <div className={styles.investmentCard}>
@@ -124,7 +133,6 @@ export const InvestmentMain = () => {
 
         <Statement />
       </div>
-
     </main>
   );
 };
