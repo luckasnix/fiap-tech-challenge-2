@@ -16,7 +16,7 @@ Componente de resumo financeiro que exibe:
 - Botão para iniciar uma nova transação
 
 **Propriedades:**
-- \`userName\` (opcional): nome do usuário.
+- \`username\` (opcional): nome do usuário.
 - \`date\`: timestamp da data exibida.
 - \`checkingAccountValue\`: valor da conta corrente em centavos/reais.
 - \`onNewTransactionButtonClick\`: função disparada ao clicar no botão "Nova transação".
@@ -24,7 +24,7 @@ Componente de resumo financeiro que exibe:
 **Exemplo de uso:**
 \`\`\`tsx
 <FinancialSummary
-  userName="João"
+  username="João"
   date={Date.now()}
   checkingAccountValue={1500}
   onNewTransactionButtonClick={() => console.log("Nova transação")}
@@ -36,7 +36,7 @@ Componente de resumo financeiro que exibe:
   },
   tags: ["autodocs"],
   argTypes: {
-    userName: {
+    username: {
       control: "text",
       description: "Nome do usuário exibido na saudação.",
       defaultValue: "João",
@@ -59,14 +59,14 @@ type Story = StoryObj<typeof FinancialSummary>;
 
 export const Default: Story = {
   args: {
-    userName: "João",
+    username: "João",
     date: Date.now(),
   },
 };
 
 export const WithoutUserName: Story = {
   args: {
-    userName: undefined,
+    username: undefined,
     date: Date.now(),
   },
 };

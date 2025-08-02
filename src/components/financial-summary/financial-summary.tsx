@@ -8,13 +8,13 @@ import { formatCurrencyBRL } from "~/utils/currency";
 import styles from "./financial-summary.module.css";
 
 export type FinancialSummaryProps = Readonly<{
-  userName?: string;
+  username: string | null;
   date: number;
   onNewTransactionButtonClick?: () => void;
 }>;
 
 export const FinancialSummary = ({
-  userName,
+  username,
   date,
   onNewTransactionButtonClick,
 }: FinancialSummaryProps) => {
@@ -22,8 +22,8 @@ export const FinancialSummary = ({
 
   return (
     <div className={styles.financialSummary}>
-      {userName ? (
-        <h2 className={styles.greetingText}>{`Olá, ${userName}! :)`}</h2>
+      {username ? (
+        <h2 className={styles.greetingText}>{`Olá, ${username}! :)`}</h2>
       ) : (
         <h2 className={styles.greetingText}>{`Olá! :)`}</h2>
       )}

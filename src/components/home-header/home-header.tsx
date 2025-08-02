@@ -3,8 +3,18 @@ import { useWindowWidth } from "~/hooks/useWindowWidth";
 import { HomeButtons } from "~/components/home-buttons/home-buttons";
 import { MenuNav } from "~/components/menu-nav/menu-nav";
 import { VectorImage } from "~/components/vector-image/vector-image";
+import { useAuthStore } from "~/stores/useAuthStore";
 
 import styles from "./home-header.module.css";
+
+const navItems = [
+  {
+    label: "Sobre",
+  },
+  {
+    label: "Serviços",
+  },
+];
 
 export type HomeHeaderProps = Readonly<{
   items: Array<{
@@ -14,7 +24,8 @@ export type HomeHeaderProps = Readonly<{
 
 export const HomeHeader = () => {
   const windowWidth = useWindowWidth();
-  const navItems = [{ label: "Sobre" }, { label: "Serviços" }];
+  const openSignInModal = useAuthStore((state) => state.openSignInModal);
+  const openSignUpModal = useAuthStore((state) => state.openSignUpModal);
 
   return (
     <header className={styles.header}>
@@ -27,11 +38,14 @@ export const HomeHeader = () => {
                 : "icon-logo"
             }
           />
-
           <MenuNav items={navItems} />
         </div>
-
-        {windowWidth > 360 ? <HomeButtons /> : null}
+        {windowWidth > 360 ? (
+          <HomeButtons
+            onSignInButtonClick={openSignInModal}
+            onSignUpButtonClick={openSignUpModal}
+          />
+        ) : null}
       </div>
     </header>
   );
