@@ -1,9 +1,13 @@
+import { TransactionProps } from "~/components/statement/transaction-item";
+
 export type ServiceResponse<T> = {
   message: string;
   result: T;
 };
 
-export type TransactionType = "Credit" | "Debit";
+export type TransactionType = "deposito" | "saque";
+
+export type Type = "Credit" | "Debit";
 
 // User service
 
@@ -30,7 +34,6 @@ export type AuthUserResponse = ServiceResponse<{
 }>;
 
 // Account service
-
 export type GetAccountParams = {
   token: string;
 };
@@ -39,36 +42,36 @@ export type GetAccountParams = {
 export type GetAccountResponse = ServiceResponse<{
   account: unknown[];
   cards: unknown[];
-  transactions: unknown[];
+  transactions: TransactionProps[];
 }>;
 
 export type CreateTransactionParams = {
   token: string;
-  accountId: string;
-  type: TransactionType;
+  type: Type;
   value: number;
   from?: string;
   to?: string;
   anexo?: string;
 };
 
-export type CreateTransactionResponse = ServiceResponse<{
+export type CreateTransactionResponse = ServiceResponse<StatementResponse>;
+
+export type GetStatementParams = {
+  token: string;
+};
+
+// TODO: Implementar os tipos "unknown" com os tipos corretos
+export type GetStatementResponse = ServiceResponse<{
+  transactions: StatementResponse[];
+}>;
+
+type StatementResponse = {
   id: string;
   accountId: string;
-  type: TransactionType;
+  type: Type;
   value: number;
   date: string;
   from: string;
   to: string;
   anexo: string;
-}>;
-
-export type GetStatementParams = {
-  token: string;
-  accountId: string;
 };
-
-// TODO: Implementar os tipos "unknown" com os tipos corretos
-export type GetStatementResponse = ServiceResponse<{
-  transactions: unknown[];
-}>;
