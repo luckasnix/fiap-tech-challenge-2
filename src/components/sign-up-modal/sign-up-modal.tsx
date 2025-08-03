@@ -12,7 +12,21 @@ const schema = z.object({
     .string()
     .min(3, { message: "Nome deve ter ao menos 3 caracteres" }),
   email: z.email({ message: "Email inválido" }),
-  password: z.string().min(8, { message: "Mínimo 8 caracteres" }),
+  password: z
+    .string()
+    .min(8, { message: "Mínimo 8 caracteres" })
+    .refine((value) => /[a-z]/.test(value), {
+      message: "Deve conter ao menos uma letra minúscula",
+    })
+    .refine((value) => /[A-Z]/.test(value), {
+      message: "Deve conter ao menos uma letra maiúscula",
+    })
+    .refine((value) => /[0-9]/.test(value), {
+      message: "Deve conter ao menos um número",
+    })
+    .refine((value) => /[^A-Za-z0-9]/.test(value), {
+      message: "Deve conter ao menos um caractere especial",
+    }),
 });
 
 export type SignUpValue = z.infer<typeof schema>;
