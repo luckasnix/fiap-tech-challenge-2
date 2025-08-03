@@ -49,7 +49,9 @@ Siga as etapas abaixo para configurar e executar o projeto em seu ambiente local
 
 ## Executando o Projeto com o Docker
 
-1. Construa a imagem:
+1. Construa a imagem e execute o contêiner do [backend](https://github.com/luckasnix/fiap-tech-challenge-backend) seguindo as instruções do seu `README.md`
+
+2. Construa a imagem do frontend:
 
     ```bash
     docker build --build-arg NEXT_PUBLIC_BACKEND_URL=URL_BACKEND --tag=NOME_IMAGEM:TAG_IMAGEM .
@@ -61,7 +63,7 @@ Siga as etapas abaixo para configurar e executar o projeto em seu ambiente local
     docker build --build-arg NEXT_PUBLIC_BACKEND_URL=http://localhost:8000 --tag=fiap-tc-frontend:latest .
     ```
 
-2. Execute o contêiner:
+3. Execute o contêiner do frontend:
 
     ```bash
     docker run -p 3000:3000 -d --rm --name=NOME_CONTÊINER NOME_IMAGEM:TAG_IMAGEM
@@ -71,6 +73,18 @@ Siga as etapas abaixo para configurar e executar o projeto em seu ambiente local
 
     ```bash
     docker run -p 3000:3000 -d --rm --name=fiap-tc-frontend-app fiap-tc-frontend:latest
+    ```
+
+## Executando o Projeto com o Docker Compose
+
+1. Construa a imagem do [backend](https://github.com/luckasnix/fiap-tech-challenge-backend) seguindo as instruções do seu `README.md` e a nomeie `fiap-tc-backend` com a tag `latest`
+
+2. Construa a imagem do frontend (este repositório) seguindo as instruções do seu `README.md` e a nomeie `fiap-tc-frontend` com a tag `latest`
+
+3. Execute a stack:
+
+    ```bash
+    docker-compose up -d
     ```
 
 ## Executando a Documentação do Design System
