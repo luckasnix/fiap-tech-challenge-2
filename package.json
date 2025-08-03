@@ -14,12 +14,12 @@
   },
   "dependencies": {
     "@tanstack/react-form": "1.14.1",
-    "apexcharts": "^5.3.1",
+    "apexcharts": "5.3.1",
     "next": "15.4.1",
     "react": "19.1.0",
-    "react-apexcharts": "^1.7.0",
+    "react-apexcharts": "1.7.0",
     "react-dom": "19.1.0",
-    "zod": "4.0.5",
+    "zod": "4.0.14",
     "zustand": "5.0.6"
   },
   "devDependencies": {

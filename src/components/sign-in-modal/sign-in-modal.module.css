@@ -59,7 +59,7 @@
 }
 
 .error {
-  color: var(--color-error);
+  color: var(--color-secondary);
   font-size: 14px;
   margin-top: 2px;
 }
