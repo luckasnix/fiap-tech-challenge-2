@@ -1,4 +1,4 @@
-name: Standard CI Checks
+name: Standard
 
 on:
   pull_request:
@@ -8,63 +8,21 @@ on:
   workflow_dispatch:
 
 jobs:
-  auth_zone_checks:
-    name: "Auth Zone Checks"
+  standard:
+    name: Standard
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
+      - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          # Assumindo que o .nvmrc está na raiz do monorepo
-          node-version-file: ".nvmrc"
-          cache: 'npm'
-          cache-dependency-path: 'apps/auth-zone/package-lock.json'
-
-      - name: Install Auth Zone Dependencies
-        run: npm ci
-        working-directory: ./apps/auth-zone
-
-      - name: Check Auth Zone Linting
-        run: npm run lint
-        working-directory: ./apps/auth-zone
-
-      - name: Check Auth Zone Formatting
-        run: npm run format:check
-        working-directory: ./apps/auth-zone
-
-      - name: Check Auth Zone Build
-        run: npm run build
-        working-directory: ./apps/auth-zone
-
-  app_zone_checks:
-    name: "App Zone Checks"
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version-file: ".nvmrc"
-          cache: 'npm'
-          cache-dependency-path: 'apps/app-zone/package-lock.json'
-
-      - name: Install App Zone Dependencies
+      - name: Install dependencies
         run: npm ci
-        working-directory: ./apps/app-zone
-
-      - name: Check App Zone Linting
+      - name: Check linting
         run: npm run lint
-        working-directory: ./apps/app-zone
-
-      - name: Check App Zone Formatting
+      - name: Check formatting
         run: npm run format:check
-        working-directory: ./apps/app-zone
-      
-      - name: Check App Zone Build
+      - name: Check build
         run: npm run build
-        working-directory: ./apps/app-zone
