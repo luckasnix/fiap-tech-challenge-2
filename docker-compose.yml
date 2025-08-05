@@ -1,0 +1,18 @@
+name: "fiap-tc-stack"
+services:
+  backend:
+    image: "fiap-tc-backend:latest"
+    ports:
+      - "8000:8000"
+  frontend-auth-zone:
+    image: "fiap-tc-frontend-auth-zone:latest"
+    ports:
+      - "3000:3000"
+    depends_on:
+      - "backend"
+  frontend-app-zone:
+    image: "fiap-tc-frontend-app-zone:latest"
+    ports:
+      - "3001:3001"
+    depends_on:
+      - "frontend-auth-zone"
