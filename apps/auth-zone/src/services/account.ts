@@ -1,30 +1,10 @@
 import type {
   GetAccountParams,
-  GetAccountResponse,
   CreateTransactionParams,
   CreateTransactionResponse,
   GetStatementParams,
   GetStatementResponse,
 } from "~/types/services";
-
-export const getAccount = async ({ token }: GetAccountParams) => {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_BACKEND_URL}/account`,
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    },
-  );
-
-  if (!response.ok) {
-    throw new Error("Falha ao buscar conta");
-  }
-
-  const data: GetAccountResponse = await response.json();
-
-  return data;
-};
 
 export const createTransaction = async ({
   token,

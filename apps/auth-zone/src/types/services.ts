@@ -1,5 +1,3 @@
-import { TransactionProps } from "~/components/statement/transaction-item";
-
 export type ServiceResponse<T> = {
   message: string;
   result: T;
@@ -37,13 +35,6 @@ export type AuthUserResponse = ServiceResponse<{
 export type GetAccountParams = {
   token: string;
 };
-
-// TODO: Implementar os tipos "unknown" com os tipos corretos
-export type GetAccountResponse = ServiceResponse<{
-  account: unknown[];
-  cards: unknown[];
-  transactions: TransactionProps[];
-}>;
 
 export type CreateTransactionParams = {
   token: string;

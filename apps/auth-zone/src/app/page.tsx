@@ -40,12 +40,7 @@ export default function Home() {
       <SignInModal
         open={isSignInModalOpen}
         onClose={closeSignInModal}
-        onSignIn={async (value) => {
-          await signIn(value, (response) => {
-            setToken(response.result.token);
-            router.push("/dashboard");
-          });
-        }}
+        onSignIn={handleSignIn}
       />
       <SignUpModal
         open={isSignUpModalOpen}
