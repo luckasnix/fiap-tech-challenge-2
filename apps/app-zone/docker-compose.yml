@@ -1,0 +1,12 @@
+name: "fiap-tc-stack"
+services:
+  backend:
+    image: "fiap-tc-backend:latest"
+    ports:
+      - "8000:8000"
+  frontend:
+    image: "fiap-tc-frontend:latest"
+    ports:
+      - "3000:3000"
+    depends_on:
+      - "backend"
