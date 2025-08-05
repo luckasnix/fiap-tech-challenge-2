@@ -1,0 +1,41 @@
+.header {
+  background-color: var(--color-black);
+  padding: var(--spacing-4) 0;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-4);
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-8);
+}
+
+.navbar svg {
+  width: 146px;
+  fill: var(--color-success);
+}
+
+@media (max-width: 720px) {
+  .navbar svg {
+    width: 28px;
+  }
+}
+
+@media (max-width: 360px) {
+  .navbar {
+    width: 100%;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+  }
+
+  .navbar svg {
+    width: 146px;
+  }
+}
