@@ -24,11 +24,9 @@ export default function Home() {
 
   const handleSignIn = async (value: { email: string; password: string }) => {
     // A store agora chama a API route local, que define o cookie.
-    await signIn(value, (response) => {
-      // Após o sucesso (cookie definido), redireciona para o dashboard.
-      // O rewrite no next.config.ts cuidará de levar para a app-zone.
-      setToken(response.result.token);
+    await signIn(value, () => {
       router.push("/dashboard");
+      router.forward();
     });
   };
 

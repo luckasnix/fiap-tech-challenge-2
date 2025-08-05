@@ -4,6 +4,7 @@ import type {
   AuthUserParams,
   AuthUserResponse,
 } from "~/types/services";
+import { serialize } from "cookie";
 
 export const createUser = async ({
   username,
@@ -32,7 +33,6 @@ export const createUser = async ({
 };
 
 export const authUser = async ({ email, password }: AuthUserParams) => {
-  console.log(process.env.NEXT_PUBLIC_BACKEND_URL);
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_BACKEND_URL}/user/auth`,
     {
@@ -49,6 +49,17 @@ export const authUser = async ({ email, password }: AuthUserParams) => {
   }
 
   const data: AuthUserResponse = await response.json();
+  const { token } = data.result;
+  const serializedCookie = serialize("authToken", token, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV !== "development",
+    sameSite: "lax",
+    path: "/",
+    maxAge: 60 * 60 * 24 * 30, // 30 dias
+  });
 
-  return data;
+  return new Response(JSON.stringify({ message: "Login bem-sucedido" }), {
+    status: 200,
+    headers: { "Set-Cookie": serializedCookie },
+  });
 };

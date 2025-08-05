@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import type { SignInValue } from "~/components/sign-in-modal/sign-in-modal";
 import type { SignUpValue } from "~/components/sign-up-modal/sign-up-modal";
-import { createUser } from "~/services/user";
+import { authUser, createUser } from "~/services/user";
 import type { AuthUserResponse, CreateUserResponse } from "~/types/services";
 
 export type AuthState = {
@@ -32,11 +32,7 @@ export const useAuthStore = create<AuthState>((set) => ({
   closeSignUpModal: () => set({ isSignUpModalOpen: false }),
   signIn: async (value, onSuccess, onError) => {
     try {
-      const response = await fetch("/api/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(value),
-      });
+      const response = await authUser(value);
 
       if (!response.ok) {
         throw new Error("Falha no login");
