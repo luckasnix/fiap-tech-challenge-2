@@ -5,20 +5,20 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return [
       {
-        source: '/dashboard/:path*',
-        destination: 'http://localhost:3001/dashboard/:path*',
+        source: "/dashboard/:path*",
+        destination: "http://localhost:3001/dashboard/:path*",
       },
       {
-        source: '/investimentos/:path*',
-        destination: 'http://localhost:3001/investimentos/:path*',
+        source: "/investimentos/:path*",
+        destination: "http://localhost:3001/investimentos/:path*",
       },
       {
-        source: '/_next/static/:path*',
-        destination: 'http://localhost:3001/_next/static/:path*',
+        source: "/_next/static/:path*",
+        destination: "http://localhost:3001/_next/static/:path*",
       },
       {
-        source: '/api/:path*',
-        destination: 'http://localhost:3001/api/:path*',
+        source: "/api/:path*",
+        destination: "http://localhost:3001/api/:path*",
       },
     ];
   },

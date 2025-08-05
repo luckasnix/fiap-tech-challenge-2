@@ -32,14 +32,14 @@ export const useAuthStore = create<AuthState>((set) => ({
   closeSignUpModal: () => set({ isSignUpModalOpen: false }),
   signIn: async (value, onSuccess, onError) => {
     try {
-      const response = await fetch('/api/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch("/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(value),
       });
 
       if (!response.ok) {
-        throw new Error('Falha no login');
+        throw new Error("Falha no login");
       }
 
       const data = await response.json();
