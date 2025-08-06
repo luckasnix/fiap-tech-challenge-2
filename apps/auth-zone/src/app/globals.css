@@ -1,0 +1,69 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.container-fluid {
+  width: 100%;
+}
+
+:root {
+  --color-primary: #004d61;
+  --color-secondary: #ff5031;
+  --color-tertiary: #dee9ea;
+  --color-quaternary: #f8f8f8;
+  --color-quinary: #e4ede3;
+  --color-success: #47a138;
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-gray: #8b8b8b;
+  --color-dark-gray: #444444;
+  --color-light-gray: #cbcbcb;
+  --color-light-green: #d7e1d8;
+
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-5: 20px;
+  --spacing-6: 24px;
+  --spacing-7: 28px;
+  --spacing-8: 32px;
+  --spacing-9: 36px;
+  --spacing-10: 40px;
+  --spacing-11: 48px;
+  --spacing-12: 52px;
+  --spacing-13: 56px;
+  --spacing-14: 58px;
+  --spacing-15: 60px;
+  --spacing-16: 64px;
+}
+
+@media (max-width: 720px) {
+  .container {
+    max-width: 600px;
+  }
+}
+
+@media (max-width: 360px) {
+  .container {
+    max-width: 310px;
+  }
+}
