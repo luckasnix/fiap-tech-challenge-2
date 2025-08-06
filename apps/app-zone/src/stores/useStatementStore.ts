@@ -1,7 +1,9 @@
 import { create } from "zustand";
 import { TransactionProps } from "~/components/statement/transaction-item";
+import { createTransaction, getStatement } from "~/services/account";
 import type {
   CreateTransactionResponse,
+  GetStatementParams,
   GetStatementResponse,
   TransactionType,
   Type,
@@ -44,16 +46,18 @@ const useStatementStore = create<Store>((set) => ({
   total: 0,
   getTransactions: async () => {
     try {
-      const response = await fetch("/api/statement"); // Simples e seguro
+      // Chama a nova API Route local
+      const response = await fetch('/api/statement');
 
       if (!response.ok) {
-        throw new Error("Falha ao buscar transações");
+        throw new Error("Falha ao buscar transações via API Route");
       }
 
-      const responseData: GetStatementResponse = await response.json();
+      const data: GetStatementResponse = await response.json();
+      data.result = data.result || { transactions: [] };
 
       const formattedTransactions: TransactionProps[] =
-        responseData.result.transactions.map((transaction) => ({
+        data.result.transactions.map((transaction) => ({
           id: transaction.id,
           date: transaction.date,
           transactionType: apiTypeToTransactionType[transaction.type],
@@ -63,7 +67,7 @@ const useStatementStore = create<Store>((set) => ({
 
       set({
         transactions: formattedTransactions,
-        total: calculateTotal(formattedTransactions),
+        total: calculateTotal(formattedTransactions), // Calcula o total com base nos dados brutos
       });
     } catch (error) {
       console.error("Falha ao buscar transações:", error);
@@ -72,20 +76,19 @@ const useStatementStore = create<Store>((set) => ({
   addTransaction: async ({ transactionType, value }) => {
     try {
       const type = transactionTypeToApiType[transactionType];
-
-      const response = await fetch("/api/transactions", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+      const response = await fetch('/api/transactions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ type, value }),
       });
 
-      if (!response.ok) {
-        throw new Error("Falha ao criar transação");
-      }
-
+      if (!response.ok) throw new Error('Falha ao criar transação');
+      
       const data: CreateTransactionResponse = await response.json();
+
+      if (!data || !data.result) {
+        throw new Error('Resposta inválida do backend');
+      }
 
       const newTransaction: TransactionProps = {
         id: data.result.id,
@@ -96,9 +99,11 @@ const useStatementStore = create<Store>((set) => ({
 
       set((state) => {
         const newTransactions = [...state.transactions, newTransaction];
+        // Recalcula o total com base nos dados brutos para precisão
+        const rawTransactions = newTransactions.map(t => ({...t, type: transactionTypeToApiType[t.transactionType]}));
         return {
           transactions: newTransactions,
-          total: calculateTotal(newTransactions),
+          total: calculateTotal(rawTransactions),
         };
       });
     } catch (error) {

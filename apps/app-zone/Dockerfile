@@ -11,6 +11,8 @@ RUN npm ci
 COPY . .
 ARG NEXT_PUBLIC_BACKEND_URL
 ENV NEXT_PUBLIC_BACKEND_URL=$NEXT_PUBLIC_BACKEND_URL
+ARG NEXT_PUBLIC_AUTH_ZONE_URL
+ENV NEXT_PUBLIC_AUTH_ZONE_URL=$NEXT_PUBLIC_AUTH_ZONE_URL
 ENV NEXT_CONFIG_OUTPUT=standalone
 RUN npm run build
 
@@ -29,7 +31,7 @@ RUN mkdir .next
 RUN chown nextjs:nodejs .next
 
 COPY --from=deps /app/next.config.ts ./
-COPY --from=deps --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=deps --chown=nextjs:nodejs /app/.next/standalone/. ./
 COPY --from=deps --chown=nextjs:nodejs /app/.next/static ./.next/static
 
 USER nextjs

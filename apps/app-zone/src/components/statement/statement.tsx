@@ -1,16 +1,19 @@
-"use client";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import useStatementStore from "~/stores/useStatementStore";
 import styles from "./statement.module.css";
 import { TransactionItem, TransactionProps } from "./transaction-item";
+import { useUserStore } from "~/stores/useUserStore";
 
 export const Statement = () => {
   const transactions = useStatementStore((state) => state.transactions);
   const getTransactions = useStatementStore((state) => state.getTransactions);
+  const token = useUserStore((state) => state.token);
 
   useEffect(() => {
-    getTransactions();
-  }, [getTransactions]);
+    if (token) {
+      getTransactions();
+    }
+  }, [token, getTransactions]);
 
   const groupTransactionsByMonth = (transactions: TransactionProps[]) => {
     return transactions.reduce(

@@ -5,6 +5,7 @@ import { Dropdown } from "~/components/dropdown/dropdown";
 import { MoneyInput } from "~/components/money-input/money-input";
 import type { DropdownOption } from "~/models/dropdown-option.model";
 import useStatementStore from "~/stores/useStatementStore";
+import { useUserStore } from "~/stores/useUserStore";
 import { TransactionType } from "~/types/services";
 import styles from "./transaction-modal.module.css";
 
@@ -26,6 +27,7 @@ export const TransactionModal = ({ open, onClose }: TransactionModalProps) => {
   const addTransaction = useStatementStore(
     ({ addTransaction }) => addTransaction,
   );
+  const token = useUserStore((state) => state.token);
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -45,7 +47,7 @@ export const TransactionModal = ({ open, onClose }: TransactionModalProps) => {
   };
 
   const handleSubmitTransaction = async () => {
-    if (!currentTransactionType) {
+    if (!currentTransactionType || !token) {
       return;
     }
     await addTransaction({

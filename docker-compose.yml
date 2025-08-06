@@ -1,18 +1,48 @@
+version: '3.8'
+
 name: "fiap-tc-stack"
+
 services:
+  # --- SERVIÇO DE BACKEND (sem alterações) ---
   backend:
-    image: "fiap-tc-backend:latest"
+    image: "fiap-tc-backend:latest" # Garanta que esta imagem foi buildada
     ports:
       - "8000:8000"
-  frontend-auth-zone:
-    image: "fiap-tc-frontend-auth-zone:latest"
+    # Adicione networks se estiver usando uma rede customizada
+
+  # --- NOVO SERVIÇO: AUTH-ZONE (Frontend Público) ---
+  auth-zone:
+    build:
+      context: ./apps/auth-zone # Aponta para o diretório da auth-zone
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_BACKEND_URL: http://backend:8000
+        NEXT_PUBLIC_APP_ZONE_URL: http://app-zone:3001
     ports:
-      - "3000:3000"
+      - "3000:3000" # Expõe a porta principal para acesso externo
     depends_on:
-      - "backend"
-  frontend-app-zone:
-    image: "fiap-tc-frontend-app-zone:latest"
+      - backend
+      - app-zone
+    environment:
+      # URL para o backend, usando o nome do serviço do Docker
+      - NEXT_PUBLIC_BACKEND_URL=http://backend:8000
+      # URL para a app-zone, usada nos rewrites do next.config.ts
+      - NEXT_PUBLIC_APP_ZONE_URL=http://app-zone:3001
+
+  # --- NOVO SERVIÇO: APP-ZONE (Frontend Privado) ---
+  app-zone:
+    build:
+      context: ./apps/app-zone # Aponta para o diretório da app-zone
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_BACKEND_URL: http://backend:8000
+        NEXT_PUBLIC_AUTH_ZONE_URL: http://auth-zone:3000
     ports:
-      - "3001:3001"
+      - "3001:3001" # Expõe a porta para debug, mas o acesso principal é via auth-zone
     depends_on:
-      - "frontend-auth-zone"
+      - backend
+    environment:
+      # URL para o backend, usando o nome do serviço do Docker
+      - NEXT_PUBLIC_BACKEND_URL=http://backend:8000
+      # URL da auth-zone, usada no middleware para redirecionamentos
+      - NEXT_PUBLIC_AUTH_ZONE_URL=http://auth-zone:3000

@@ -32,25 +32,48 @@ export const useAuthStore = create<AuthState>((set) => ({
   closeSignUpModal: () => set({ isSignUpModalOpen: false }),
   signIn: async (value, onSuccess, onError) => {
     try {
-      const response = await authUser(value);
+      // AQUI ESTÁ A MUDANÇA: Chamamos a API Route local, não o serviço `authUser`
+      const response = await fetch('/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(value),
+      });
 
       if (!response.ok) {
-        throw new Error("Falha no login");
+        throw new Error('Falha no login');
       }
 
       const data = await response.json();
       set({ isSignInModalOpen: false });
-      onSuccess?.(data); // O 'data' aqui é apenas a mensagem de sucesso.
+      onSuccess?.(data);
     } catch (error) {
+      console.error("Erro no signIn da store:", error);
       onError?.();
     }
   },
   signUp: async (value, onSuccess, onError) => {
     try {
-      const response = await createUser(value);
+      // Chama a nova API Route local para o cadastro
+      const response = await fetch('/api/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(value),
+      });
+
+      if (!response.ok) {
+        // Lança um erro para ser pego pelo bloco catch
+        throw new Error('Falha ao criar usuário via API Route');
+      }
+
+      const data = await response.json();
       set({ isSignUpModalOpen: false });
-      onSuccess?.(response);
-    } catch {
+      onSuccess?.(data);
+    } catch (error) {
+      console.error("Erro no signUp da store:", error);
       onError?.();
     }
   },

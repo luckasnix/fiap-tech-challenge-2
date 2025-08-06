@@ -1,10 +1,10 @@
 import type {
-  GetAccountParams,
-  GetAccountResponse,
   CreateTransactionParams,
   CreateTransactionResponse,
+  GetAccountParams,
+  GetAccountResponse,
   GetStatementParams,
-  GetStatementResponse,
+  GetStatementResponse
 } from "~/types/services";
 
 export const getAccount = async ({ token }: GetAccountParams) => {

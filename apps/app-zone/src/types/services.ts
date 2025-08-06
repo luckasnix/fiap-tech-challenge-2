@@ -2,7 +2,7 @@ import { TransactionProps } from "~/components/statement/transaction-item";
 
 export type ServiceResponse<T> = {
   message: string;
-  result: T;
+  result?: T;
 };
 
 export type TransactionType = "deposito" | "saque";
