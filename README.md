@@ -13,42 +13,18 @@ Aplicação do 2º Tech Challenge da pós-graduação de Front-end Engineering d
 
 ## Executando o Projeto com o Docker
 
-1. Construa a imagem e execute o contêiner do [backend](https://github.com/luckasnix/fiap-tech-challenge-backend) seguindo as instruções do seu `README.md`
-
-2. Construa a imagem do frontend (Auth Zone):
-
-    ```bash
-    docker build --build-arg NEXT_PUBLIC_BACKEND_URL=http://localhost:8000 --tag=fiap-tc-frontend-auth-zone:latest ./apps/auth-zone
-    ```
-
-3. Construa a imagem do frontend (App Zone):
-
-    ```bash
-    docker build --build-arg NEXT_PUBLIC_BACKEND_URL=http://localhost:8000 --tag=fiap-tc-frontend-app-zone:latest ./apps/app-zone
-    ```
-
-4. Execute o contêiner do frontend (Auth Zone):
-
-    ```bash
-    docker run -p 3000:3000 -d --rm --name=fiap-tc-frontend-auth-zone-app fiap-tc-frontend-auth-zone:latest
-    ```
-
-5. Execute o contêiner do frontend (App Zone):
-
-    ```bash
-    docker run -p 3001:3001 -d --rm --name=fiap-tc-frontend-app-zone-app fiap-tc-frontend-app-zone:latest
-    ```
-
-## Executando o Projeto com o Docker Compose
-
 1. Construa a imagem do [backend](https://github.com/luckasnix/fiap-tech-challenge-backend) seguindo as instruções do seu `README.md` e a nomeie `fiap-tc-backend` com a tag `latest`
 
-2. Construa a imagem do frontend (este repositório) seguindo as instruções do seu `README.md` e a nomeie `fiap-tc-frontend` com a tag `latest`
-
-3. Execute a stack:
+2. Execute a stack da aplicação:
 
     ```bash
     docker-compose up -d
+    ```
+
+3. Finalize a stack da aplicação:
+
+    ```bash
+    docker-compose down
     ```
 
 ## Executando a Documentação do Design System
