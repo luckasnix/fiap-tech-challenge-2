@@ -12,13 +12,15 @@ async function getUserData(token: string) {
 export default async function Dashboard() {
   const cookieStore = await cookies();
   const token = cookieStore.get("authToken")?.value ?? "";
-  const user = await getUserData(token);
+  const username = cookieStore.get("username")?.value ?? "";
+  
   useUserStore.getState().setToken(token);
+  useUserStore.getState().setUsername(username);
 
   return (
     <div className={styles.dashboard}>
       <SetTokenClient token={token} />
-      <HeaderDashboard name={user.name ?? ""} />
+      <HeaderDashboard name={username ?? ""} />
       <DashboardMain />
     </div>
   );
