@@ -13,7 +13,7 @@ export default async function Dashboard() {
   const cookieStore = await cookies();
   const token = cookieStore.get("authToken")?.value ?? "";
   const username = cookieStore.get("username")?.value ?? "";
-  
+
   useUserStore.getState().setToken(token);
   useUserStore.getState().setUsername(username);
 

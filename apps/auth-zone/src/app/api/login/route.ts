@@ -36,7 +36,12 @@ export async function POST(request: Request) {
 
     return NextResponse.json(
       { message: "Login bem-sucedido!" },
-      { status: 200, headers: { "Set-Cookie": `${serializedCookie}, ${serializedUsername}, ${serializedEmail}` } },
+      {
+        status: 200,
+        headers: {
+          "Set-Cookie": `${serializedCookie}, ${serializedUsername}, ${serializedEmail}`,
+        },
+      },
     );
   } catch (error) {
     console.error("Erro na API Route /api/login:", error);
