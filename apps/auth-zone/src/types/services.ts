@@ -29,6 +29,8 @@ export type AuthUserParams = {
 
 export type AuthUserResponse = ServiceResponse<{
   token: string;
+  username: string;
+  email: string;
 }>;
 
 // Account service
